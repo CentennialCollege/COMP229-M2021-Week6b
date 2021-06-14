@@ -48,6 +48,7 @@ function ProcessLoginPage(req, res, next) {
                 console.error(err);
                 return next(err);
             }
+            return res.redirect('/clothing-list');
         });
     })(req, res, next);
 }

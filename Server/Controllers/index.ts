@@ -69,6 +69,8 @@ export function ProcessLoginPage(req: Request, res: Response, next: NextFunction
             console.error(err);
             return next(err);
         }
+
+        return res.redirect('/clothing-list');
     });
    })(req, res, next);
 }
