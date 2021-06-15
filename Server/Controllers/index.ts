@@ -5,31 +5,34 @@ import passport from 'passport';
 // create an instance of the User Model
 import User from '../Models/user';
 
+// import Util Functions
+import { UserDisplayName } from '../Util';
+
 // Display Functions
 
 export function DisplayHomePage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Home', page: 'home' });
+    res.render('index', { title: 'Home', page: 'home', displayName: UserDisplayName(req) });
 }
 
 export function DisplayAboutPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'About Us', page: 'about'  });
+    res.render('index', { title: 'About Us', page: 'about', displayName: UserDisplayName(req)   });
 }
 
 export function DisplayProjectsPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Our Projects', page: 'projects'  });
+    res.render('index', { title: 'Our Projects', page: 'projects', displayName: UserDisplayName(req)   });
 }
 
 export function DisplayServicesPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Our Services', page: 'services'  });
+    res.render('index', { title: 'Our Services', page: 'services', displayName: UserDisplayName(req)   });
 }
 
 export function DisplayContactPage(req: Request, res: Response, next: NextFunction): void
 {
-    res.render('index', { title: 'Contact Us', page: 'contact'  });
+    res.render('index', { title: 'Contact Us', page: 'contact', displayName: UserDisplayName(req)   });
 }
 
 // Authentication functions
@@ -37,7 +40,7 @@ export function DisplayLoginPage(req: Request, res: Response, next: NextFunction
 {
     if(!req.user)
     {
-        return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage')  });
+        return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req)   });
     }
     
     return res.redirect('/clothing-list');
@@ -79,7 +82,7 @@ export function DisplayRegisterPage(req: Request, res: Response, next: NextFunct
 {
     if(!req.user)
     {
-        return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage')  });
+        return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)   });
     }
 
     return res.redirect('/clothing-list');
